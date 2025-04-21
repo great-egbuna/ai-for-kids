@@ -184,10 +184,19 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
 
         {activeTab === "Bootcamp Lessons" && (
           <div className="space-y-3">
+            <div className="flex  gap-2 text-cyan-200 w-full max-w-[200px] mx-auto">
+              <h2
+                className="text-pink-500 text-lg md:text-2xl font-bold my-4"
+                style={{ textShadow: "0 0 2px #ff00ff" }}
+              >
+                Lessons
+              </h2>
+            </div>
+
             {bootcampData.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-2 justify-center text-cyan-200"
+                className="flex  gap-2 text-cyan-200 w-full max-w-[200px] mx-auto"
               >
                 <span className="text-pink-400 font-mono min-w-[2ch] text-right">
                   {item.id}.

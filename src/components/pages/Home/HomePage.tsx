@@ -142,13 +142,6 @@ export default function HomePage() {
           className=" mt-16  md:px-20 text-center"
         >
           <div className=" flex flex-col gap-4  max-w-4xl md:mx-auto  p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
-            <h2
-              className="text-pink-500 text-xl md:text-2xl font-bold mb-8"
-              style={{ textShadow: "0 0 2px #ff00ff" }}
-            >
-              Book Now {"  "} | {"  "} ASK A QUESTION
-            </h2>
-
             <EmailListForm />
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-cyan-200">
