@@ -103,7 +103,7 @@ export default function HomePage() {
           <CurriculumSection />
         </div>
 
-        <section id="about" className="mt-16 px-6 md:px-20 text-center">
+        <section id="about" className="mt-16  md:px-20 text-center">
           <h2
             className="text-pink-500 text-xl md:text-2xl font-bold mb-4"
             style={{ textShadow: "0 0 2px #ff00ff" }}

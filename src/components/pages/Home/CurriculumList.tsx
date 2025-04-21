@@ -21,7 +21,7 @@ export const CurriculumSection = () => {
   }, []);
 
   return (
-    <section className="mt-16 px-4 md:px-20">
+    <section className="mt-16 ">
       <h2 className="text-pink-500 text-2xl font-bold mb-8 text-center">
         Curriculum Roadmap
       </h2>
