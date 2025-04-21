@@ -132,7 +132,7 @@ export const EmailListForm = () => {
             <input
               type="tel"
               required
-              placeholder="+234 800 000 0000"
+              placeholder="+1 303 800 0000"
               className="w-full px-4 py-2 bg-[#1e293b] border border-cyan-400/30 rounded-md text-cyan-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
               value={formData.callNumber}
               onChange={(e) =>
