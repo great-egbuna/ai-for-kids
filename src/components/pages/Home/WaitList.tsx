@@ -50,7 +50,7 @@ export const EmailListForm = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
+    <div className="max-w-md mx-auto p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20 mb-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -123,7 +123,7 @@ export const EmailListForm = () => {
           disabled={loading}
           className="w-full py-3 bg-gradient-to-r from-cyan-400 to-pink-500 text-black font-bold rounded-md hover:from-cyan-300 hover:to-pink-400 transition-all duration-300 shadow-lg shadow-cyan-400/30 hover:shadow-xl hover:shadow-cyan-400/40 animate-glow cursor-pointer"
         >
-          {loading ? <CyberpunkWavyText /> : "JOIN THE FUTURE"}
+          {loading ? <CyberpunkWavyText /> : "Contact Us"}
         </button>
         {error && (
           <p className="text-red-400 text-sm text-center mt-4">{error}</p>

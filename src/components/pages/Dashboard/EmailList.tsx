@@ -26,7 +26,7 @@ export default function EmailList() {
   if (loading) return <CyberpunkLoader />;
 
   return (
-    <div className="border-2 border-cyan-400 p-4 md:p-8 bg-black/50 backdrop-blur-sm rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.3),inset_0_0_10px_rgba(0,255,255,0.3)]">
+    <div className=" p-4 md:p-8 bg-black/50 backdrop-blur-sm rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.3),inset_0_0_10px_rgba(0,255,255,0.3)]">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">
         <span className="text-pink-500 drop-shadow-[0_0_8px_rgba(255,0,255,0.8)]">
           SUBSCRIBER

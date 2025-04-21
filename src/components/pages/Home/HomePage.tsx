@@ -4,6 +4,7 @@ import { CurriculumSection } from "./CurriculumList";
 import "./HomePage.css";
 import { EmailListForm } from "./WaitList";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function HomePage() {
   const waitlistRef = useRef<HTMLDivElement>(null);
@@ -24,11 +25,20 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-black via-[#0f172a] to-[#1e293b] text-white font-inter  pb-[78px]"
-      style={{ textShadow: "0 0 2px #00ffff" }}
-    >
-      <header className="text-center py-6">
+    <div className="min-h-screen text-white font-inter pb-[78px] relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/ai-4-kids-background.webp"
+          alt="AI for Kids Background"
+          fill
+          className="object-cover"
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#0f172a]/80 to-[#1e293b]/90" />
+      </div>
+
+      <header className="text-center py-6 relative z-10">
         <nav className="flex justify-center gap-6 text-pink-500 font-bold text-sm md:text-base">
           <a
             href="#curriculum"
@@ -67,15 +77,12 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <main className="text-center px-4 md:px-12">
+      <main className="text-center px-4 md:px-12 relative z-10">
         <h1
           className="text-5xl md:text-7xl font-extrabold text-cyan-400 tracking-wide mt-10"
           style={{ textShadow: "0 0 4px #00ffff" }}
         >
-          {content?.heroTitle ||
-            `
-          AI 4 KIDS
-            `}
+          {content?.heroTitle || "AI 4 KIDS"}
         </h1>
         <p
           className="mt-4 text-pink-500 text-lg md:text-2xl font-semibold"
@@ -89,13 +96,13 @@ export default function HomePage() {
             onClick={() => handleScroll(waitlistRef as any)}
             className="glow-button border border-cyan-400 text-cyan-400 px-6 py-2 rounded-md hover:bg-cyan-400 hover:text-black transition"
           >
-            Join Waitlist
+            Book Now
           </button>
           <button
             onClick={() => handleScroll(contactRef as any)}
             className="glow-button border border-cyan-400 text-cyan-400 px-6 py-2 rounded-md hover:bg-cyan-400 hover:text-black transition"
           >
-            Contact
+            Contact Us
           </button>
         </div>
 
@@ -103,7 +110,7 @@ export default function HomePage() {
           <CurriculumSection />
         </div>
 
-        <section id="about" className="mt-16  md:px-20 text-center">
+        <section id="about" className="mt-16 md:px-20 text-center">
           <h2
             className="text-pink-500 text-xl md:text-2xl font-bold mb-4"
             style={{ textShadow: "0 0 2px #ff00ff" }}
@@ -112,9 +119,7 @@ export default function HomePage() {
           </h2>
           <p className="text-cyan-200 md:max-w-2xl mx-auto text-justify leading-[30px]">
             {content?.aboutContent ||
-              `
-            
-             Welcome to AI Coding for Kids—where young creators ages 10–18 learn
+              `Welcome to AI Coding for Kids—where young creators ages 10–18 learn
             how to harness the power of artificial intelligence through fun,
             hands-on lessons. Whether your child joins our interactive group
             bootcamp or signs up for personalized 1-on-1 sessions, they’ll
@@ -130,22 +135,14 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section ref={waitlistRef} id="waitlist" className="mt-16">
-          <h2
-            className="text-pink-500 text-xl md:text-2xl font-bold mb-4 text-center"
-            style={{ textShadow: "0 0 2px #ff00ff" }}
-          >
-            Join Our Waitlist
-          </h2>
-          <EmailListForm />
-        </section>
-
         <section
           ref={contactRef}
           id="contact"
-          className="mt-16  md:px-20 text-center"
+          className="mt-16 md:px-20 text-center"
         >
-          <div className="max-w-4xl mx-auto py-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20 ">
+          <div className="max-w-4xl mx-auto py-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
+            <EmailListForm />
+
             <h2
               className="text-pink-500 text-xl md:text-2xl font-bold mb-8"
               style={{ textShadow: "0 0 2px #ff00ff" }}
@@ -156,7 +153,7 @@ export default function HomePage() {
               <div>
                 <h3 className="text-pink-400 mb-4">Email</h3>
                 <a
-                  href="mailto:hello@ai4kids.com"
+                  href="mailto:techchisa@gmail.com"
                   className="hover:text-cyan-400 transition-colors"
                 >
                   techchisa@gmail.com
@@ -165,10 +162,10 @@ export default function HomePage() {
               <div>
                 <h3 className="text-pink-400 mb-4">Phone</h3>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+14046921350"
                   className="hover:text-cyan-400 transition-colors"
                 >
-                  +1 (919) 749-0023
+                  +1 (404) 692-1350
                 </a>
               </div>
               <div className="md:col-span-2">
@@ -177,6 +174,7 @@ export default function HomePage() {
                   <a href="#" className="hover:text-cyan-400 transition-colors">
                     <span className="sr-only">Twitter</span>
                     <svg
+                    
                       className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"

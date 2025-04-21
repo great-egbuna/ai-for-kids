@@ -9,7 +9,7 @@ export const curriculumData = [
     content:
       "What is AI? Examples in daily life. Play with ChatGPT or AI games",
   },
-  {
+  /*  {
     id: 2,
     title: "Prompt Engineering",
     content: "Practice writing prompts for art, stories, and games",
@@ -64,7 +64,7 @@ export const curriculumData = [
     id: 12,
     title: "Bonus Workshop II",
     content: "Create viral content: AI memes and social media posts",
-  },
+  }, */
 ];
 
 export const CurriculumCard = ({ lessons }: { lessons: any }) => {

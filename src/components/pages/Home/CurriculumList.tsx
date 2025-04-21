@@ -4,6 +4,72 @@ import { curriculumData } from "@/components/ui/CurriculumCard";
 import { useEffect, useState } from "react";
 
 // Parent Component
+
+export const bootcampData = [
+  {
+    id: 1,
+    title: "Intro to AI", // Added missing title
+    content:
+      "What is AI? Examples in daily life. Play with ChatGPT or AI games",
+  },
+  {
+    id: 2,
+    title: "Prompt Engineering",
+    content: "Practice writing prompts for art, stories, and games",
+  },
+  {
+    id: 3,
+    title: "AI Art Tools",
+    content:
+      "Use tools like DALL·E or Canva AI to make posters and digital art",
+  },
+  {
+    id: 4,
+    title: "AI Video Creation",
+    content: "Create short videos using Pika Labs, RunwayML, or Animoto",
+  },
+  {
+    id: 5,
+    title: "AI Voice + Avatars",
+    content: "Develop talking avatars with Synthesia or HeyGen",
+  },
+  {
+    id: 6,
+    title: "AI Coding Basics",
+    content: "Learn AI-powered logic using Scratch or block-based Python",
+  },
+  {
+    id: 7,
+    title: "Build an AI Project",
+    content: "Group project: Create a chatbot or game with AI assets",
+  },
+  {
+    id: 8,
+    title: "AI Ethics & Safety",
+    content: "Discuss responsible AI use and digital citizenship",
+  },
+  {
+    id: 9,
+    title: "Edit & Polish",
+    content: "Add voiceovers, design thumbnails, and refine presentations",
+  },
+  {
+    id: 10,
+    title: "Presentation Day",
+    content: "Showcase final AI video and coding projects",
+  },
+  {
+    id: 11,
+    title: "Bonus Workshop I",
+    content: "Music generation and sound design with AI tools",
+  },
+  {
+    id: 12,
+    title: "Bonus Workshop II",
+    content: "Create viral content: AI memes and social media posts",
+  },
+];
+
 export const CurriculumSection = () => {
   const [lessonPairs, setLessonPairs] = useState<any[]>([]);
 
@@ -25,7 +91,7 @@ export const CurriculumSection = () => {
       <h2 className="text-pink-500 text-2xl font-bold mb-8 text-center">
         Curriculum Roadmap
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="">
         {lessonPairs.map((pair, index) => (
           <CurriculumCard
             key={index}
@@ -40,13 +106,13 @@ export const CurriculumSection = () => {
 
 // Updated CurriculumCard Component
 const CurriculumCard = ({ lesson1, lesson2 }: any) => {
-  const [activeTab, setActiveTab] = useState("lesson1");
+  const [activeTab, setActiveTab] = useState("bootcamp");
 
   return (
-    <div className="glowing-card p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 hover:border-cyan-400/50 transition-all shadow-lg">
+    <div className="glowing-card p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 hover:border-cyan-400/50 transition-all shadow-lg max-w-[800px] mx-auto">
       {/* Tabs */}
       <div className="flex gap-2 mb-4 flex-wrap">
-        <button
+        {/* <button
           onClick={() => setActiveTab("lesson1")}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
             activeTab === "lesson1"
@@ -68,11 +134,11 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
           >
             Lesson {lesson2.id}
           </button>
-        )}
+        )} */}
 
         <button
           onClick={() => setActiveTab("bootcamp")}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex-1 ${
             activeTab === "bootcamp"
               ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-white shadow-lg shadow-pink-500/30"
               : "bg-[#1e293b] text-pink-300 hover:bg-pink-500/10 hover:shadow-md hover:shadow-pink-500/20"
@@ -83,13 +149,13 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
 
         <button
           onClick={() => setActiveTab("oneonone")}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex-1 ${
             activeTab === "oneonone"
               ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-white shadow-lg shadow-pink-500/30"
               : "bg-[#1e293b] text-pink-300 hover:bg-pink-500/10 hover:shadow-md hover:shadow-pink-500/20"
           }`}
         >
-          1-on-1
+          1-on-1 Sessions
         </button>
       </div>
 
@@ -118,11 +184,27 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
 
         {activeTab === "bootcamp" && (
           <div className="space-y-3">
-            {curriculumData.map((item) => (
-              <div key={item.id} className="text-cyan-200">
-                <span className="text-pink-400">{item.id}.</span> {item.title}
+            {bootcampData.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center gap-2 justify-center text-cyan-200"
+              >
+                <span className="text-pink-400 font-mono min-w-[2ch] text-right">
+                  {item.id}.
+                </span>
+                <span className="text-left">{item.title}</span>
               </div>
             ))}
+
+            <div>
+              <p className="text-cyan-200 font-bold">Cost</p>
+              <p className="text-cyan-200">$350</p>
+            </div>
+
+            <div>
+              <p className="text-cyan-200 font-bold">Start Date</p>
+              <p className="text-cyan-200">June 1, 2025</p>
+            </div>
           </div>
         )}
 
@@ -140,6 +222,16 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
               Fun. Flexible. Future-ready.
               <br />
               No experience needed—just curiosity!
+            </div>
+
+            <div>
+              <p className="text-cyan-200 font-bold">Cost</p>
+              <p className="text-cyan-200">$65</p>
+            </div>
+
+            <div>
+              <p className="text-cyan-200 font-bold">Start Date</p>
+              <p className="text-cyan-200">June 1, 2025</p>
             </div>
           </div>
         )}
