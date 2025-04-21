@@ -12,6 +12,8 @@ export const EmailListForm = () => {
     lastName: "",
     callNumber: "",
     email: "",
+    childAge: "",
+    notes: "",
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -29,25 +31,31 @@ export const EmailListForm = () => {
         createdAt: new Date().toISOString(),
       });
       setSubmitted(true);
-      setFormData({ firstName: "", lastName: "", callNumber: "", email: "" });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        callNumber: "",
+        email: "",
+        childAge: "",
+        notes: "",
+      });
       setMsg("Thank You");
     } catch (err) {
       setMsg("Failed to subscribe. Please try again.");
-
       setError("Failed to subscribe. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  if (submitted) {
+  /*  if (submitted) {
     return (
       <div className="text-cyan-400 text-center animate-pulse">
         <p className="text-xl font-bold">Thanks for joining!</p>
         <p className="mt-2">You're now part of the future 🤖</p>
       </div>
     );
-  }
+  } */
 
   return (
     <div className="max-w-md mx-auto p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20 mb-6">
@@ -114,6 +122,40 @@ export const EmailListForm = () => {
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
+            }
+          />
+        </div>
+
+        {/* New Child Age Field */}
+        <div>
+          <label className="text-pink-400 text-sm font-medium block mb-2 text-left">
+            Child's Age
+          </label>
+          <input
+            type="number"
+            min="5"
+            max="18"
+            required
+            placeholder="Enter child's age"
+            className="w-full px-4 py-2 bg-[#1e293b] border border-cyan-400/30 rounded-md text-cyan-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+            value={formData.childAge}
+            onChange={(e) =>
+              setFormData({ ...formData, childAge: e.target.value })
+            }
+          />
+        </div>
+
+        {/* New Notes Field */}
+        <div>
+          <label className="text-pink-400 text-sm font-medium block mb-2 text-left">
+            Notes
+          </label>
+          <textarea
+            placeholder="What lessons would your child like to learn?"
+            className="w-full px-4 py-2 h-32 bg-[#1e293b] border border-cyan-400/30 rounded-md text-cyan-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+            value={formData.notes}
+            onChange={(e) =>
+              setFormData({ ...formData, notes: e.target.value })
             }
           />
         </div>
