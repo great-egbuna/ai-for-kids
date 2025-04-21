@@ -25,7 +25,7 @@ export default function HomePage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-black via-[#0f172a] to-[#1e293b] text-white font-inter p-4 pb-[78px]"
+      className="min-h-screen bg-gradient-to-br from-black via-[#0f172a] to-[#1e293b] text-white font-inter  pb-[78px]"
       style={{ textShadow: "0 0 2px #00ffff" }}
     >
       <header className="text-center py-6">
@@ -110,7 +110,7 @@ export default function HomePage() {
           >
             About AI Coding for Kids
           </h2>
-          <p className="text-cyan-200 max-w-2xl mx-auto text-justify leading-[30px]">
+          <p className="text-cyan-200 md:max-w-2xl mx-auto text-justify leading-[30px]">
             {content?.aboutContent ||
               `
             
@@ -143,9 +143,9 @@ export default function HomePage() {
         <section
           ref={contactRef}
           id="contact"
-          className="mt-16 px-6 md:px-20 text-center"
+          className="mt-16  md:px-20 text-center"
         >
-          <div className="max-w-4xl mx-auto p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
+          <div className="max-w-4xl mx-auto py-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20 ">
             <h2
               className="text-pink-500 text-xl md:text-2xl font-bold mb-8"
               style={{ textShadow: "0 0 2px #ff00ff" }}
