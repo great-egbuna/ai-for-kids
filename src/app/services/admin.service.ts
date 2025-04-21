@@ -13,6 +13,7 @@ export interface WaitlistSubscriber {
   firstName: string;
   lastName: string;
   email: string;
+  type: string;
 }
 export interface SiteContent {
   heroTitle: string;

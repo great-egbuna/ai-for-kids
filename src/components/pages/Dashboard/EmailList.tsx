@@ -76,7 +76,7 @@ export default function EmailList() {
                     {sub.email}
                   </td>
                   <td className="p-2 md:p-4 text-sm md:text-base text-cyan-300 group-hover:text-cyan-100 group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] transition-all">
-                    {sub?.type || "General"}
+                    {sub?.type as any || "General"}
                   </td>
                 </tr>
               ))}

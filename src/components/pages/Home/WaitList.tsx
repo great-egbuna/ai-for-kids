@@ -56,6 +56,7 @@ export const EmailListForm = () => {
           email: "",
           childAge: "",
           notes: "",
+          type: "",
         });
       }
     } catch (err) {
