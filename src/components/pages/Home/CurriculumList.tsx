@@ -106,7 +106,7 @@ export const CurriculumSection = () => {
 
 // Updated CurriculumCard Component
 const CurriculumCard = ({ lesson1, lesson2 }: any) => {
-  const [activeTab, setActiveTab] = useState("Lessons");
+  const [activeTab, setActiveTab] = useState("Bootcamp Lessons");
 
   return (
     <div className="glowing-card p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 hover:border-cyan-400/50 transition-all shadow-lg max-w-[800px] mx-auto">
@@ -137,14 +137,14 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
         )} */}
 
         <button
-          onClick={() => setActiveTab("Lessons")}
+          onClick={() => setActiveTab("Bootcamp Lessons")}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex-1 ${
-            activeTab === "Lessons"
+            activeTab === "Bootcamp Lessons"
               ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-white shadow-lg shadow-pink-500/30"
               : "bg-[#1e293b] text-pink-300 hover:bg-pink-500/10 hover:shadow-md hover:shadow-pink-500/20"
           }`}
         >
-          Lessons
+          Bootcamp Lessons
         </button>
 
         <button
@@ -182,7 +182,7 @@ const CurriculumCard = ({ lesson1, lesson2 }: any) => {
           </div>
         )}
 
-        {activeTab === "Lessons" && (
+        {activeTab === "Bootcamp Lessons" && (
           <div className="space-y-3">
             {bootcampData.map((item) => (
               <div

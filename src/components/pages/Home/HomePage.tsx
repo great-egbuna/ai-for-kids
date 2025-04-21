@@ -146,7 +146,7 @@ export default function HomePage() {
               className="text-pink-500 text-xl md:text-2xl font-bold mb-8"
               style={{ textShadow: "0 0 2px #ff00ff" }}
             >
-              Contact Us
+              Book Now {"  "} | {"  "} ASK A QUESTION
             </h2>
 
             <EmailListForm />
