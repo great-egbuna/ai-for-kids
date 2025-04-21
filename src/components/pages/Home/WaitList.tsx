@@ -16,6 +16,7 @@ export const EmailListForm = () => {
     email: "",
     childAge: "",
     notes: "",
+    type: "",
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -38,6 +39,7 @@ export const EmailListForm = () => {
     setLoading(true);
     setError("");
 
+    formData.type = activeTab;
     try {
       await addDoc(collection(db, "subscribers"), {
         ...formData,

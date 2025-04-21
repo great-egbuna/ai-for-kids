@@ -1,11 +1,13 @@
 "use client";
 import { authService } from "@/app/services/auth.service";
+import { useUserStore } from "@/app/store/useUserStore";
 import { CyberpunkWavyText } from "@/components/ui/CyberPunkText";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 
 export default function Login() {
   const router = useRouter();
+  const { setIsLoggedIn } = useUserStore((state) => state);
   const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +28,13 @@ export default function Login() {
         alert("Password must be at least 6 characters");
       }
 
-      await authService.signIn({ email, password });
+      const res = await authService.signIn({ email, password });
+
+      if (res instanceof Error) {
+        alert(res.message);
+        return;
+      }
+      setIsLoggedIn(true);
       router.push("/dashboard");
     } catch (error: any) {
       setError(error.message || "Sign up failed. Please try again.");
