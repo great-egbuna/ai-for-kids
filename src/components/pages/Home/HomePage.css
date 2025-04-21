@@ -1,0 +1,65 @@
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+  50% {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+  100% {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+}
+
+@keyframes wave {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  }
+  20% {
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+}
+
+@keyframes glow_two {
+  0% {
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.3),
+      0 0 20px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4),
+      0 0 30px rgba(34, 211, 238, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.3),
+      0 0 20px rgba(34, 211, 238, 0.2);
+  }
+}
+
+.animate-glow {
+  animation: glow_two 2s ease-in-out infinite;
+}
+
+.glow-button {
+  animation: glow 2s infinite ease-in-out;
+}
+
+.glowing-card {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.glowing-card:hover {
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+}
+
+.animate-wave {
+  animation: wave 1.4s ease-in-out infinite;
+  display: inline-block;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
