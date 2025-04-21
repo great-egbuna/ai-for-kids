@@ -139,9 +139,9 @@ export default function HomePage() {
         <section
           ref={contactRef}
           id="contact"
-          className=" mt-16 px-4 md:px-20 text-center"
+          className=" mt-16  md:px-20 text-center"
         >
-          <div className=" flex flex-col gap-4  max-w-4xl mx-auto py-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
+          <div className=" flex flex-col gap-4  max-w-4xl md:mx-auto  p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20">
             <h2
               className="text-pink-500 text-xl md:text-2xl font-bold mb-8"
               style={{ textShadow: "0 0 2px #ff00ff" }}
