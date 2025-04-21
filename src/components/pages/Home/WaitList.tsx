@@ -6,6 +6,7 @@ import { db } from "@/app/lib/firebase";
 import { CyberpunkToast } from "@/components/ui/CustomToast";
 import { CyberpunkWavyText } from "@/components/ui/CyberPunkText";
 import Link from "next/link";
+import { button } from "framer-motion/client";
 
 export const EmailListForm = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,17 @@ export const EmailListForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [msg, setMsg] = useState<any>(null);
+  const [activeTab, setActiveTab] = useState<"book" | "question">("book");
+
+  const isFormValid = () => {
+    return (
+      formData.firstName &&
+      formData.lastName &&
+      formData.callNumber &&
+      formData.email &&
+      formData.childAge
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,68 +42,53 @@ export const EmailListForm = () => {
       await addDoc(collection(db, "subscribers"), {
         ...formData,
         createdAt: new Date().toISOString(),
+        type: activeTab,
       });
       setSubmitted(true);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        callNumber: "",
-        email: "",
-        childAge: "",
-        notes: "",
-      });
       setMsg("Thank You");
+      if (activeTab === "question") {
+        setFormData({
+          firstName: "",
+          lastName: "",
+          callNumber: "",
+          email: "",
+          childAge: "",
+          notes: "",
+        });
+      }
     } catch (err) {
-      setMsg("Failed to subscribe. Please try again.");
-      setError("Failed to subscribe. Please try again.");
+      setMsg("Failed to submit. Please try again.");
+      setError("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  /*  if (submitted) {
-    return (
-      <div className="text-cyan-400 text-center animate-pulse">
-        <p className="text-xl font-bold">Thanks for joining!</p>
-        <p className="mt-2">You're now part of the future 🤖</p>
-      </div>
-    );
-  } */
-
   return (
     <div>
-      <div className="flex justify-center items-center gap-4 mb-8">
-        {/* Book Now Button */}
-        <Link
-          href={submitted ? "https://buy.stripe.com/fZe16p4np3FGg0w6oo" : "#"}
-          className={`flex items-center px-6 py-2 rounded-md border ${
-            submitted
-              ? "border-cyan-400 bg-gradient-to-r from-cyan-400/20 to-pink-500/20 animate-glow cursor-pointer hover:scale-105 transition-all"
-              : "border-cyan-400/30 opacity-50 cursor-not-allowed"
+      <div className="flex gap-2 mb-8">
+        <button
+          onClick={() => setActiveTab("book")}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex-1 ${
+            activeTab === "book"
+              ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-white shadow-lg shadow-pink-500/30"
+              : "bg-[#1e293b] text-pink-300 hover:bg-pink-500/10 hover:shadow-md hover:shadow-pink-500/20"
           }`}
         >
-          <span
-            className={`text-lg font-bold ${
-              submitted ? "text-cyan-400" : "text-cyan-400/50"
-            }`}
-          >
-            BOOK NOW
-          </span>
-        </Link>
-
-        {/* Divider */}
-        <div className="h-6 w-px bg-cyan-400/30" />
-
-        {/* Ask Question Button */}
-        <Link
-          href="#contact"
-          className="px-6 py-2 rounded-md border border-pink-500 hover:border-cyan-400 transition-all hover:scale-105"
+          Book Now
+        </button>
+        <button
+          onClick={() => setActiveTab("question")}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex-1 ${
+            activeTab === "question"
+              ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-white shadow-lg shadow-pink-500/30"
+              : "bg-[#1e293b] text-pink-300 hover:bg-pink-500/10 hover:shadow-md hover:shadow-pink-500/20"
+          }`}
         >
-          <span className="text-lg font-bold text-pink-500 hover:text-cyan-400 transition-colors">
-            ASK A QUESTION
-          </span>
-        </Link>
+          Ask A Question
+        </button>
       </div>
+
       <div className="md:max-w-md md:mx-auto p-6 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1e293b] border border-cyan-400/30 shadow-lg shadow-cyan-400/20 mb-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -160,17 +157,18 @@ export const EmailListForm = () => {
             />
           </div>
 
-          {/* New Child Age Field */}
           <div>
             <label className="text-pink-400 text-sm font-medium block mb-2 text-left">
-              Child's Age
+              {activeTab === "book" ? "Child's Age" : "Child's Age"}
             </label>
             <input
               type="number"
               min="5"
               max="18"
-              required
-              placeholder="Enter child's age"
+              required={activeTab === "book"}
+              placeholder={
+                activeTab === "book" ? "Enter child's age" : "Enter Child's age"
+              }
               className="w-full px-4 py-2 bg-[#1e293b] border border-cyan-400/30 rounded-md text-cyan-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
               value={formData.childAge}
               onChange={(e) =>
@@ -179,13 +177,16 @@ export const EmailListForm = () => {
             />
           </div>
 
-          {/* New Notes Field */}
           <div>
             <label className="text-pink-400 text-sm font-medium block mb-2 text-left">
-              Notes
+              {activeTab === "book" ? "Notes" : "Your Question"}
             </label>
             <textarea
-              placeholder="What lessons would your child like to learn?"
+              placeholder={
+                activeTab === "book"
+                  ? "What lessons would your child like to learn?"
+                  : "Type your question here..."
+              }
               className="w-full px-4 py-2 h-32 bg-[#1e293b] border border-cyan-400/30 rounded-md text-cyan-100 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
               value={formData.notes}
               onChange={(e) =>
@@ -194,13 +195,44 @@ export const EmailListForm = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-cyan-400 to-pink-500 text-black font-bold rounded-md hover:from-cyan-300 hover:to-pink-400 transition-all duration-300 shadow-lg shadow-cyan-400/30 hover:shadow-xl hover:shadow-cyan-400/40 animate-glow cursor-pointer"
-          >
-            {loading ? <CyberpunkWavyText /> : "Contact Us"}
-          </button>
+          <div className="space-y-4">
+            <button
+              type="submit"
+              disabled={loading || (activeTab === "book" && !isFormValid())}
+              className="w-full py-3 bg-gradient-to-r from-cyan-400 to-pink-500 text-black font-bold rounded-md hover:from-cyan-300 hover:to-pink-400 transition-all duration-300 shadow-lg shadow-cyan-400/30 hover:shadow-xl hover:shadow-cyan-400/40 animate-glow cursor-pointer"
+            >
+              {loading ? (
+                <CyberpunkWavyText />
+              ) : activeTab === "book" ? (
+                "Enter"
+              ) : (
+                "Ask Question"
+              )}
+            </button>
+
+            {activeTab === "book" && (
+              <button
+                disabled={!submitted}
+                className={`w-full py-3 font-bold rounded-md transition-all duration-300 shadow-lg ${
+                  submitted
+                    ? "bg-gradient-to-r from-pink-500 to-cyan-400 text-black hover:from-pink-400 hover:to-cyan-300 shadow-pink-500/30 hover:shadow-xl hover:shadow-cyan-400/40 animate-glow cursor-pointer"
+                    : "bg-gray-700 text-gray-400 cursor-not-allowed opacity-75"
+                }`}
+              >
+                <Link
+                  href={
+                    submitted
+                      ? "https://buy.stripe.com/fZe16p4np3FGg0w6oo"
+                      : "#"
+                  }
+                  className="block w-full h-full"
+                >
+                  Confirm Booking
+                </Link>
+              </button>
+            )}
+          </div>
+
           {error && (
             <p className="text-red-400 text-sm text-center mt-4">{error}</p>
           )}
