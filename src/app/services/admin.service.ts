@@ -14,6 +14,7 @@ export interface WaitlistSubscriber {
   lastName: string;
   email: string;
   type: string;
+  notes?: string;
 }
 export interface SiteContent {
   heroTitle: string;

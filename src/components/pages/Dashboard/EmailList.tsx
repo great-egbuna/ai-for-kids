@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 export default function EmailList() {
   const [subscribers, setSubscribers] = useState<WaitlistSubscriber[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedNote, setSelectedNote] = useState<string | null>(null);
 
   useEffect(() => {
     const loadSubscribers = async () => {
@@ -64,7 +65,10 @@ export default function EmailList() {
               {subscribers.map((sub) => (
                 <tr
                   key={sub.id}
-                  className="border-b border-cyan-400/20 hover:bg-cyan-400/10 transition-all group"
+                  className="border-b border-cyan-400/20 hover:bg-cyan-400/10 transition-all group cursor-pointer"
+                  onClick={() =>
+                    setSelectedNote(sub.notes || "No notes available.")
+                  }
                 >
                   <td className="p-2 md:p-4 text-sm md:text-base text-cyan-300 group-hover:text-cyan-100 group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] transition-all">
                     {sub.firstName}
@@ -76,7 +80,7 @@ export default function EmailList() {
                     {sub.email}
                   </td>
                   <td className="p-2 md:p-4 text-sm md:text-base text-cyan-300 group-hover:text-cyan-100 group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] transition-all">
-                    {sub?.type as any || "General"}
+                    {(sub?.type as any) || "General"}
                   </td>
                 </tr>
               ))}
@@ -84,6 +88,23 @@ export default function EmailList() {
           </table>
         </div>
       </div>
+
+      {selectedNote !== null && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-black text-cyan-200 border border-cyan-500 p-6 rounded-xl max-w-md w-full mx-4 shadow-[0_0_20px_rgba(0,255,255,0.5)]">
+            <h3 className="text-lg font-bold mb-4 text-pink-400 drop-shadow-[0_0_6px_rgba(255,0,255,0.7)]">
+              Subscriber Notes
+            </h3>
+            <p className="whitespace-pre-wrap">{selectedNote}</p>
+            <button
+              onClick={() => setSelectedNote(null)}
+              className="mt-6 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition-all"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
